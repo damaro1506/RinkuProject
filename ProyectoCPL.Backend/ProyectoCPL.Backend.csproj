@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="cplRepositories\**" />
+    <Compile Remove="cplServices\**" />
+    <EmbeddedResource Remove="cplRepositories\**" />
+    <EmbeddedResource Remove="cplServices\**" />
+    <None Remove="cplRepositories\**" />
+    <None Remove="cplServices\**" />
+    <Page Remove="cplRepositories\**" />
+    <Page Remove="cplServices\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Entities\CashRegisterOperation.cs" />
+    <Compile Remove="Entities\Courtesy.cs" />
+    <Compile Remove="Entities\CoverConfiguration.cs" />
+    <Compile Remove="Entities\CoverConfigurationArea.cs" />
+    <Compile Remove="Entities\CoverConfigurationPrice.cs" />
+    <Compile Remove="Entities\CoverData.cs" />
+    <Compile Remove="Entities\CoverDetail.cs" />
+    <Compile Remove="Entities\CustomerType.cs" />
+    <Compile Remove="Entities\Logo.cs" />
+    <Compile Remove="Entities\Payment.cs" />
+    <Compile Remove="Entities\PaymentDetail.cs" />
+    <Compile Remove="Entities\PaymentMethod.cs" />
+    <Compile Remove="Entities\PaymentType.cs" />
+    <Compile Remove="Entities\Role.cs" />
+    <Compile Remove="Entities\Terminal.cs" />
+    <Compile Remove="Entities\User.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Projects.Commons\Projects.Commons.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="cplRepositories\" />
+    <Folder Include="cplServices\" />
+  </ItemGroup>
+
+</Project>

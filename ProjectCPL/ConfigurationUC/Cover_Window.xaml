@@ -1,0 +1,174 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Controls="clr-namespace:Cover.POS.Controls" x:Class="Cover.POS.ConfigurationUC.Cover_Window" 
+             xmlns:vsm="clr-namespace:System.Windows;assembly=WPFToolkit"
+             xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+             mc:Ignorable="d" 
+             Loaded="UserControl_Loaded" Style="{StaticResource ModalAdminUCStyle}">
+
+    <UserControl.Resources>
+        <!-- DataGrid style -->
+        <Style x:Key="DataGridStyle" TargetType="{x:Type DataGrid}">
+            <Setter Property="ColumnHeaderStyle" Value="{DynamicResource DataGridColumnHeaderStyle}"/>
+            <Setter Property="AlternatingRowBackground" Value="#F4F4F4"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+        <!-- DataGridColumnHeader style -->
+        <Style x:Key="DataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+        <!--unable ther user to select the rows!-->
+        <Style TargetType="{x:Type DataGridCell}">
+            <Setter Property="IsHitTestVisible" Value="True" />
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid x:Name="CoverGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="400"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="25"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Día:" HorizontalAlignment="Left" Margin="0,7,0,0" Grid.Row="0" VerticalAlignment="Top" Style="{StaticResource MediumNormalLabel}" Grid.Column="1" Height="37" Width="47"  />
+        <Label Content="Tipo de cliente:" HorizontalAlignment="Left" Margin="0,54,0,0" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Style="{StaticResource MediumNormalLabel}" Width="160" Height="36" />
+        <Label Grid.Row="0" Content="Horario:" HorizontalAlignment="Left" Margin="0,100,0,0" Grid.Column="1" VerticalAlignment="Top" Style="{StaticResource MediumNormalLabel}" Height="36" Width="88"/>
+        
+        <Label Grid.Row="0" Content="A" HorizontalAlignment="Left" Margin="415,104,0,0"  Grid.Column="1" VerticalAlignment="Top" Style="{StaticResource MediumNormalLabel}" Height="27" Width="40"/>
+        <Label Content="Precio:" HorizontalAlignment="Left" Margin="0,146,0,0" Grid.Row="0" VerticalAlignment="Top" Style="{StaticResource MediumNormalLabel}" Height="38" Width="73" Grid.Column="1" />
+        <Label Grid.Row="0" Content="Impresora:" HorizontalAlignment="Left" Margin="0,194,0,0"  Grid.Column="1" VerticalAlignment="Top" Style="{StaticResource MediumNormalLabel}" Height="38" Width="111"/>
+        <Label Grid.Row="0" Content="Vigencia:" HorizontalAlignment="Left" Margin="0,243,0,0"  Grid.Column="1" VerticalAlignment="Top" Style="{StaticResource MediumNormalLabel}" Height="36" Width="111"/>
+        <Label Content="Hrs" Grid.Column="1" HorizontalAlignment="Left" Margin="411,246,0,0" VerticalAlignment="Top" Style="{StaticResource MediumNormalLabel}" RenderTransformOrigin="-0.118,0.4" Height="30" Width="44"/>
+        <Label x:Name="lbCode" Content="Clave:" Grid.Column="1" HorizontalAlignment="Left" Margin="0,340,0,0" VerticalAlignment="Top" Style="{StaticResource MediumNormalLabel}" RenderTransformOrigin="-0.118,0.4" Height="30" Width="73"/>
+
+        <CheckBox x:Name="chMon"  Style="{StaticResource CheckBoxStyle}" Content="Lunes" Margin="147,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.106,-0.4" Grid.Row="0" Grid.Column="1"  IsChecked="{Binding IsSelected}" Height="28" HorizontalAlignment="Left" Width="79" FontSize="14" />
+        <CheckBox x:Name="chTue"  Style="{StaticResource CheckBoxStyle}" Content="Martes" Margin="221,10,0,0" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1"  IsChecked="{Binding IsSelected}" Height="26" FontSize="14" HorizontalAlignment="Left" Width="85"/>
+        <CheckBox x:Name="chWed"  Style="{StaticResource CheckBoxStyle}" Content="Miércoles" Margin="300,10,0,0" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1" IsChecked="{Binding IsSelected}" Height="28" FontSize="14" HorizontalAlignment="Left" Width="102" />
+        <CheckBox x:Name="chThu"  Style="{StaticResource CheckBoxStyle}" Content="Jueves" Margin="396,10,0,0" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1"  IsChecked="{Binding IsSelected}" Height="28" FontSize="14" HorizontalAlignment="Left" Width="81"/>
+        <CheckBox x:Name="chFri"  Style="{StaticResource CheckBoxStyle}" Content="Viernes" HorizontalAlignment="Left" Margin="476,10,0,0" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1" IsChecked="{Binding IsSelected}" Height="28" Width="89" FontSize="14"/>
+        <CheckBox x:Name="chSat"  Style="{StaticResource CheckBoxStyle}" Content="Sábado" Margin="559,10,0,0" Grid.Row="0" Grid.Column="1" IsChecked="{Binding IsSelected}" Height="28" FontSize="14" HorizontalAlignment="Left" Width="92" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chSun"  Style="{StaticResource CheckBoxStyle}" Content="Domingo" Margin="650,10,0,0" Grid.Row="0" Grid.Column="1" IsChecked="{Binding IsSelected}" Height="28" FontSize="14" HorizontalAlignment="Left" Width="99" VerticalAlignment="Top" />
+
+        <ComboBox Grid.Row="0" x:Name="cmbCustomerType" Style="{DynamicResource Combox}" Grid.Column="1" HorizontalAlignment="Left" Margin="159,56,0,0"  VerticalAlignment="Top" Width="246" Height="32"/>
+        <Controls:TimePickerUC  Grid.Row="0" x:Name="tpStart" Grid.Column="1"   HorizontalAlignment="Left" Margin="159,102,0,0"  VerticalAlignment="Top" Width="246" Height="32" BorderBrush="{x:Null}"/>
+        <Controls:TimePickerUC Grid.Row="0" x:Name="tpFinal" Grid.Column="1"  HorizontalAlignment="Left" Margin="453,104,0,0" VerticalAlignment="Top" Width="246" Height="32" BorderBrush="{x:Null}" />
+        <TextBox x:Name="txtPrice" Style="{StaticResource TextBoxStyle}" HorizontalAlignment="Left" Height="32" Margin="159,149,0,0" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="246" FontSize="20" GotFocus="txtPrice_GotFocus" KeyDown="txtPrice_KeyDown" HorizontalContentAlignment="Right" />
+        <ComboBox Grid.Row="0" x:Name="cmbPrint"  Style="{DynamicResource Combox}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="246" Margin="159,196,0,0"  Grid.Column="1" Height="32"/>
+        <TextBox x:Name="txtValidHours" Style="{StaticResource TextBoxStyle}" HorizontalAlignment="Left" Height="32" Margin="159,243,0,0" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="246" FontSize="20" GotFocus="txtPrice_GotFocus" KeyDown="txtPrice_KeyDown"/>
+        <TextBox x:Name="txtCode" Style="{StaticResource TextBoxStyle}" HorizontalAlignment="Left" Height="32" Margin="159,339,0,0" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="246" FontSize="20" GotFocus="txtPrice_GotFocus"/>
+        <Label x:Name="lb_Name" Content="Nombre:" Grid.Column="1" HorizontalAlignment="Left" Margin="0,291,0,0" VerticalAlignment="Top" Style="{StaticResource MediumNormalLabel}" RenderTransformOrigin="-0.118,0.4" Height="30" Width="100"/>
+        <TextBox x:Name="txtName" Style="{StaticResource TextBoxStyle}" HorizontalAlignment="Left" Height="32" Margin="159,290,0,0" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap"  VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="246" FontSize="20"/>
+
+        <Button Grid.Row="0" x:Name="AddCover" Content="Agregar" Style="{StaticResource PrimaryButton}" Width="153" Height="56"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10"  Grid.Column="1"   Click="AddCover_Click" Background="#FF0072C6" />
+
+        <DataGrid  Grid.Row="1" x:Name="dgCover" Style="{StaticResource DataGridStyle}" Grid.Column="1" AutoGenerateColumns="False"  BorderThickness="0"
+            	CellStyle="{DynamicResource DataGridDefaultCellStyle}"	Background="White" BorderBrush="White" GridLinesVisibility="None" RowHeaderWidth="0" SelectionMode="Single" >
+            <DataGrid.Effect>
+                <DropShadowEffect ShadowDepth="10" Direction="275" BlurRadius="30" Color="#FFC5C5C5"/>
+            </DataGrid.Effect>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="*" IsReadOnly="True" Header="Día" CanUserResize="False" CanUserReorder="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding DayName}" HorizontalAlignment="Left" Style="{DynamicResource MediumGridLabel}"></Label>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" IsReadOnly="True" Header="Nombre" CanUserResize="False" CanUserReorder="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding ConfigurationName}" HorizontalAlignment="Left" Style="{DynamicResource MediumGridLabel}"></Label>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" IsReadOnly="True" Header="Hora inicial" CanUserResize="False" CanUserReorder="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding StartTime}" ContentStringFormat="hh\:mm"  HorizontalAlignment="Center" Style="{DynamicResource MediumGridLabel}"></Label>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" IsReadOnly="True" Header="Hora final" CanUserResize="False" CanUserReorder="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding FinalTime}" ContentStringFormat="hh\:mm"  HorizontalAlignment="Center" Style="{DynamicResource MediumGridLabel}"></Label>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" IsReadOnly="True" Header="Tipo" CanUserResize="False" CanUserReorder="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding CustomerType.Name}"  HorizontalAlignment="Center" Style="{DynamicResource MediumGridLabel}"></Label>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" IsReadOnly="True" Header="Precio" CanUserResize="False" CanUserReorder="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Price}" ContentStringFormat="C"  HorizontalAlignment="Right" Style="{DynamicResource MediumGridLabel}"></Label>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" IsReadOnly="True" Header="Impresora" CanUserResize="False" CanUserReorder="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Printer}"  HorizontalAlignment="Center" Style="{DynamicResource MediumGridLabel}"></Label>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" IsReadOnly="True" Header="Vigencia" CanUserResize="False" CanUserReorder="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding ValidHours}"  HorizontalAlignment="Center" Style="{DynamicResource MediumGridLabel}"></Label>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" IsReadOnly="True" Header="Clave" CanUserResize="False" CanUserReorder="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding KeyCode}"  HorizontalAlignment="Center" Style="{DynamicResource MediumGridLabel}"></Label>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate/>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btndeleteConfiguration" Width="30"
+                                    Height="30" Click="btndeleteConfiguration_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Grid>
+                                            <Ellipse Stroke="{x:Null}"
+                                             StrokeThickness="2" Fill="{DynamicResource PrimaryColor}"/>
+                                            <Image Source="{DynamicResource Img_Close}" Width="100" VerticalAlignment="Center"/>
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        </Grid>
+</UserControl>

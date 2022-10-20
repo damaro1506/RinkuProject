@@ -1,0 +1,69 @@
+﻿<Window Name="UserWindow" x:Class="Cover.POS.ConfigurationUC.User_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="User_Window" Style="{StaticResource ModalWindowStyle}" Height="356" Width="562" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded_1" WindowStyle="None" BorderThickness="0" Visibility="Visible" BorderBrush="Black" Background="White" OpacityMask="#FF4F4B4B">
+    <Window.Resources>
+        <Storyboard x:Key="StoryboardEntrance">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="{x:Null}" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="490" KeySpline="1,0,0,1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="-30" KeySpline="1,0,0,1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:00.8000000" Value="0" KeySpline="0,0,0,1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="{x:Null}" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0.095" />
+                <SplineDoubleKeyFrame KeySpline="1,0,0.512,1" KeyTime="00:00:00.3000000" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.RenderTransform>
+        <TransformGroup>
+            <ScaleTransform ScaleX="1" ScaleY="1"/>
+            <SkewTransform AngleX="0" AngleY="0"/>
+            <RotateTransform Angle="0"/>
+            <TranslateTransform X="0" Y="0"/>
+        </TransformGroup>
+    </Window.RenderTransform>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource StoryboardEntrance}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Border CornerRadius="8" Background="Black">
+            <Grid Grid.Column="0" Grid.Row="0" Background="Black" Margin="4,10,0,0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="lbTitle" Style="{StaticResource TitleLabel}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Width="253"  FontSize="23" Margin="10,0,0,6" Height="44" >
+                    <Run Text="Alta de usuario"/>
+                </Label>
+                <Ellipse HorizontalAlignment="Left" Height="40" Margin="33,0,0,0" VerticalAlignment="Top" Width="40" Fill="{DynamicResource PrimaryColor}" Grid.Column="1"/>
+                <Button Style="{StaticResource Flat}" x:Name="ExitButtonw" Grid.Column="1" Click="ExitButtonw_Click">
+                    <Image Source="{DynamicResource Img_Close}" VerticalAlignment="Center" Margin="25,0,22,10" Height="40" />
+                </Button>
+            </Grid>
+        </Border>
+        <Label Content="Nombre:" Style="{StaticResource MediumNormalLabel}" HorizontalAlignment="Left" Margin="27,38,0,0" Grid.Row="1" VerticalAlignment="Top" />
+        <Label Content="Contraseña:" Style="{StaticResource MediumNormalLabel}" HorizontalAlignment="Left" Margin="27,87,0,0" Grid.Row="1" VerticalAlignment="Top"  />
+        <Label Content="Rol:" Style="{StaticResource MediumNormalLabel}" HorizontalAlignment="Left" Margin="27,136,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtName"  Style="{StaticResource TextBoxStyle}" HorizontalAlignment="Left" Height="37" Margin="159,38,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="335" FontSize="20" VerticalContentAlignment="Center"/>
+        <PasswordBox x:Name="txtPassword"  Style="{StaticResource MyPasswordBox}" HorizontalAlignment="Left" Height="37" Margin="159,87,0,0" Grid.Row="1"  VerticalAlignment="Top" Width="335" FontSize="15" VerticalContentAlignment="Center" KeyDown="txtPassword_KeyDown" Background="#FFEEEEEE"/>
+        <ComboBox x:Name="cmbRol" Style="{DynamicResource Combox}" HorizontalAlignment="Left" Margin="159,137,0,0" Grid.Row="1" VerticalAlignment="Top" Width="335" Height="37" />
+        <Image Grid.Row="2" Source="/WBM.Common;component/Images/shadow_hu2.fw.png" VerticalAlignment="Top" Margin="5,0" Stretch="Fill" />
+        <Button x:Name="BtnSave" Style="{StaticResource GreenButton}" Grid.Row="3" Content="Guardar" Width="153" Height="56" Margin="400,6,9,8" Click="BtnSave_Click"/>
+    </Grid>
+</Window>

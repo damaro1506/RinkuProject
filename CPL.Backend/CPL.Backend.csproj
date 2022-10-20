@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2BC4DB6E-2E49-440A-B2F3-EF75BA36B754}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cover.Backend</RootNamespace>
+    <AssemblyName>Cover.Backend</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ApplicationBlocks.ExceptionManagement">
+      <HintPath>..\..\..\CommonDlls\Microsoft.ApplicationBlocks.ExceptionManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces">
+      <HintPath>..\..\..\CommonDlls\Microsoft.ApplicationBlocks.ExceptionManagement.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Zen.Barcode.Core">
+      <HintPath>..\CommonDlls\Zen.Barcode.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="cplServices\AreaService.cs" />
+    <Compile Include="cplServices\CashRegisterOperationService.cs" />
+    <Compile Include="cplServices\CoverConfigurationPriceService.cs" />
+    <Compile Include="cplServices\CourtesyService.cs" />
+    <Compile Include="cplServices\CoverConfigurationAreaService.cs" />
+    <Compile Include="cplServices\CoverConfigurationService.cs" />
+    <Compile Include="cplServices\CoverDataService.cs" />
+    <Compile Include="cplServices\CoverDetailService.cs" />
+    <Compile Include="cplServices\CustomerTypeService.cs" />
+    <Compile Include="cplServices\LogoService.cs" />
+    <Compile Include="cplServices\PaymentService.cs" />
+    <Compile Include="cplServices\PaymentMethodService.cs" />
+    <Compile Include="cplServices\RoleService.cs" />
+    <Compile Include="cplServices\TerminalService.cs" />
+    <Compile Include="cplServices\UserService.cs" />
+    <Compile Include="Configuration\SystemSettings.cs" />
+    <Compile Include="Context.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="DataAccess\Helper.cs" />
+    <Compile Include="Entities\Area.cs" />
+    <Compile Include="Entities\CashRegisterOperation.cs" />
+    <Compile Include="Entities\CoverConfigurationPrice.cs" />
+    <Compile Include="Entities\Courtesy.cs" />
+    <Compile Include="Entities\CoverConfigurationArea.cs" />
+    <Compile Include="Entities\CoverData.cs" />
+    <Compile Include="Entities\CoverConfiguration.cs" />
+    <Compile Include="Entities\CoverDetail.cs" />
+    <Compile Include="Entities\CustomerType.cs" />
+    <Compile Include="Entities\Logo.cs" />
+    <Compile Include="Entities\Payment.cs" />
+    <Compile Include="Entities\PaymentMethod.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\Terminal.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="ExceptionManagement\AdditionalInfo.cs" />
+    <Compile Include="ExceptionManagement\CoverException.cs" />
+    <Compile Include="ExceptionManagement\ExceptionFilePublisher.cs" />
+    <Compile Include="ExceptionManagement\ExceptionManagement.cs" />
+    <Compile Include="ExceptionManagement\PublishParameters.cs" />
+    <Compile Include="Handlers\SystemSettingsSectionHandler.cs" />
+    <Compile Include="Helper\Dates.cs" />
+    <Compile Include="Printer\BraceletPrinter.cs" />
+    <Compile Include="Printer\ClosurePrinter.cs" />
+    <Compile Include="Printer\PrinterBase.cs" />
+    <Compile Include="Printer\TicketPrinter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="cplRepositories\AreaRepository.cs" />
+    <Compile Include="cplRepositories\CashRegisterOperationRepository.cs" />
+    <Compile Include="cplRepositories\CoverConfigurationPriceRepository.cs" />
+    <Compile Include="cplRepositories\CourtesyRepository.cs" />
+    <Compile Include="cplRepositories\CoverConfigurationAreaRepository.cs" />
+    <Compile Include="cplRepositories\CoverConfigurationRepository.cs" />
+    <Compile Include="cplRepositories\CoverDataRepository.cs" />
+    <Compile Include="cplRepositories\CoverDetailRepository.cs" />
+    <Compile Include="cplRepositories\CustomerTypeRepository.cs" />
+    <Compile Include="cplRepositories\LogoRepository.cs" />
+    <Compile Include="cplRepositories\PaymentRepository.cs" />
+    <Compile Include="cplRepositories\PaymentMethodRepository.cs" />
+    <Compile Include="cplRepositories\RoleRepository.cs" />
+    <Compile Include="cplRepositories\TerminalRepository.cs" />
+    <Compile Include="cplRepositories\UserRepository.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

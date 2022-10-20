@@ -1,0 +1,137 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:Controls="clr-namespace:WBM.Common.Controls;assembly=WBM.Common" x:Name="MainCover" mc:Ignorable="d" x:Class="Cover.POS.MainWindow"
+        Title="MainWindow" Loaded="MainWindow_Loaded" Style="{StaticResource WindowMaximized}" >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="37"/>
+            <RowDefinition Height="54"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+
+        <Controls:TopBarUC x:Name="TopBar" />
+
+        <Grid Name="TopBarActions" Grid.Row="1" Background="{DynamicResource PrimaryColor}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="65"/>
+                <ColumnDefinition Width="65"/>
+                <ColumnDefinition Width="65"/>
+                <ColumnDefinition Width="65"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lbMain" Grid.Column="0" Content="COVERS" Style="{StaticResource TitleLabel}" Margin="9,5,607,7"/>
+            <Button x:Name="btnReports" Style="{StaticResource Flat}" Grid.Column="1" Click="btnReports_Click" ToolTip="REPORTES">
+                <Button.Resources>
+                    <Style TargetType="ToolTip" BasedOn="{StaticResource {x:Type ToolTip}}">
+                        <Setter Property="Background" Value="Black"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="BorderThickness" Value="1,1,1,1"/>
+                    </Style>
+                </Button.Resources>
+                <Image Source="{DynamicResource Img_Reports}" Height="26" VerticalAlignment="Center" Margin="19,13,19,15"/>
+            </Button>
+            <Button x:Name="btnClosure" Style="{StaticResource Flat}" Grid.Column="2" Click="btnClosure_Click" ToolTip="CORTES">
+                <Image Source="{DynamicResource Img_Closure}" Width="27" Height="25" VerticalAlignment="Center" Margin="19,14,19,15"/>
+                <Button.Resources>
+                    <Style TargetType="ToolTip" BasedOn="{StaticResource {x:Type ToolTip}}">
+                        <Setter Property="Background" Value="Black"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontSize" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="btnConfiguration" Style="{StaticResource Flat}" Grid.Column="3" Click="btnConfiguration_Click" ToolTip="CONFIGURACIÓN">
+                <Image Source="{DynamicResource Img_Settings}" Width="27" Height="26" VerticalAlignment="Center" Margin="0,10,0,10"  />
+                <Button.Resources>
+                    <Style TargetType="ToolTip" BasedOn="{StaticResource {x:Type ToolTip}}">
+                        <Setter Property="Background" Value="Black"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontSize" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="btnLock" Style="{StaticResource Flat}" Grid.Column="4" Click="btnLock_Click" ToolTip="BLOQUEAR">
+                <Image Source="{DynamicResource Img_Lock}" Width="20" Height="25" VerticalAlignment="Center" Margin="0,10,0,10"  />
+                <Button.Resources>
+                    <Style TargetType="ToolTip" BasedOn="{StaticResource {x:Type ToolTip}}">
+                        <Setter Property="Background" Value="Black"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontSize" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+        <Grid Name="GridContent" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="450"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+
+                <TextBox x:Name="txtquantityGirl" Style="{StaticResource TextBoxStyle}" TextAlignment="Center" HorizontalAlignment="Left" Height="49" Margin="231,449,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" KeyDown="txtquantityBoy_KeyDown" Text="0" FontWeight="Bold" FontSize="44" GotFocus="txtquantityBoy_GotFocus"   GotMouseCapture="txtquantityBoy_GotMouseCapture" />
+
+                <TextBox x:Name="txtquantityBoy"  Style="{StaticResource TextBoxStyle}" TextAlignment="Center" HorizontalAlignment="Left" Height="49" Margin="231,193,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" KeyDown="txtquantityBoy_KeyDown" Text="0" FontWeight="Bold" FontSize="44" GotFocus="txtquantityBoy_GotFocus"   GotMouseCapture="txtquantityBoy_GotMouseCapture" />
+
+                <Ellipse Fill="{DynamicResource ResourceKey=PrimaryColor}" HorizontalAlignment="Left" Height="74" Margin="182,182,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
+                <Ellipse Fill="{DynamicResource ResourceKey=PrimaryColor}" HorizontalAlignment="Left" Height="75" Margin="376,437,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
+                <Ellipse Fill="{DynamicResource ResourceKey=PrimaryColor}" HorizontalAlignment="Left" Height="75" Margin="182,437,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
+                <Ellipse Fill="{DynamicResource ResourceKey=PrimaryColor}" HorizontalAlignment="Left" Height="76" Margin="376,180,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
+
+                <Image Name="ImgMan" Grid.Row="1" Source="/Cover.POS;component/Images/man-suit-thinking-silhouette-blue.png" HorizontalAlignment="Left" Height="209" Margin="47,51,0,0" VerticalAlignment="Top" Width="114"/>
+                <Label x:Name="lbcoverBoy" Visibility="Hidden" Grid.Row="1" Content="$0.00" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="311,247,0,0" VerticalAlignment="Top" Width="177" FontWeight="Bold" FontSize="30"/>
+                <Button x:Name="btnplusBoy" Grid.Row="1" HorizontalAlignment="Left" Height="73"  VerticalAlignment="Top" Width="75" Style="{StaticResource Flat}" Click="Plus_Click" Margin="376,181,0,0">
+                    <Image Source="{DynamicResource Img_Plus}" VerticalAlignment="Stretch" d:IsLocked="True"/>
+                </Button>
+                <Button x:Name="btnminusBoy" Grid.Row="1" HorizontalAlignment="Left" Height="73" VerticalAlignment="Top" Width="75"  Style="{StaticResource Flat}" Click="Minus_Click" Margin="182,181,0,0">
+                    <Image Source="{DynamicResource Img_Minus}" VerticalAlignment="Stretch" d:IsLocked="True"  />
+                </Button>
+
+                <Image Name="ImgWoman" Grid.Row="1" Source="/Cover.POS;component/Images/silhouette-of-woman-in-short-dress.png" HorizontalAlignment="Left" Height="218" Margin="47,297,0,0" VerticalAlignment="Top" Width="114"/>
+                <Label x:Name="lbcoverGirl" Grid.Row="1"  Visibility="Hidden"  Content="$0.00" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="311,499,0,-2" VerticalAlignment="Top" Width="177" FontWeight="Bold" FontSize="30" Grid.RowSpan="2"/>
+                <Button x:Name="btnminusGirl" Grid.Row="1" HorizontalAlignment="Left" Height="73"  VerticalAlignment="Top" Width="75"  Style="{StaticResource Flat}" Click="MinusF_Click" Margin="182,437,0,0" >
+                    <Image Source="{DynamicResource Img_Minus}" VerticalAlignment="Stretch" d:IsLocked="True"  />
+                </Button>
+                <Button x:Name="btnplusGirl"  Grid.Row="1" Style="{StaticResource ResourceKey=Flat}" HorizontalAlignment="Left" Height="73"  VerticalAlignment="Top" Width="75"  Click="PlusF_Click" Margin="376,437,0,0" Background="{x:Null}" BorderBrush="{x:Null}">
+                    <Image Source="{DynamicResource Img_Plus}" VerticalAlignment="Stretch" d:IsLocked="True"  />
+                </Button>
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="166,12,0,0" Height="164" VerticalAlignment="Top"  >
+                    <WrapPanel x:Name="pnlMaleCovers"/>
+                </ScrollViewer>
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="166,269,0,0" Height="164" VerticalAlignment="Top"  >
+                    <WrapPanel x:Name="pnlFemaleCovers" />
+                </ScrollViewer>
+            </Grid>
+            <Button Grid.Column="1" x:Name="btnCoverConfigurationType" VerticalAlignment="Top" Height="56" Content="PREVENTA DE EVENTOS" Style="{StaticResource BlackButton}"  Click="btnCoverConfigurationType_Click" Margin="45,21,29,480"/>
+            <Controls:NumPadUC  x:Name="NumPad" Grid.Column="1" HorizontalAlignment="Left" Height="378" Margin="45,95,0,0" VerticalAlignment="Top" Width="376"/>
+        </Grid>
+
+        <Image Grid.Row="3" Source="/WBM.Common;component/Images/shadow_hu2.fw.png" VerticalAlignment="Top" Margin="5,0,10,0" Stretch="Fill" />
+
+        <Grid Name="GridFooter" Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Column="1" x:Name="btnCerrar" Width="153" Height="56" Content="Cobrar" Style="{StaticResource GreenButton}"  Click="btnCerrar_Click"/>
+        </Grid>
+    </Grid>
+</Window>
