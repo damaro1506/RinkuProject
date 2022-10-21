@@ -37,16 +37,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="cplRepositories\MovementsRepository.cs" />
+    <Compile Include="cplRepositories\EmployeeRepository.cs" />
+    <Compile Include="cplServices\MovementsService.cs" />
+    <Compile Include="cplServices\EmployeeService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Projects.Commons\Projects.Commons.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="cplRepositories\" />
-    <Folder Include="cplServices\" />
   </ItemGroup>
 
 </Project>

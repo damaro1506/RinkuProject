@@ -9,7 +9,7 @@ using ProyectoCPL.Backend.Entities;
 
 namespace ProyectoCPL.Backend.cplServices
 {
-    public class EmployeeService
+    public class MovementsService
     {
         #region "Properties"
 

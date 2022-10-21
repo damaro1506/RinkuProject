@@ -14,7 +14,7 @@ namespace ProyectoCPL.Backend.Entities
         public String FirstName { get; set; }
         public String SecondName { get; set; }
         public DateTime RegistrationDate { get; set; }
-        public DateTime LeaveDate { get; set; }
+        public DateTime? LeaveDate { get; set; }
         public RolesInformation RolesInformation { get; set; }
         public Boolean Active { get; set; }
     }

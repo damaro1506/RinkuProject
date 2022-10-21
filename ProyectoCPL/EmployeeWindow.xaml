@@ -1,0 +1,38 @@
+﻿<Window x:Name="EMPLEADOS" x:Class="ProyectoCPL.EmployeeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoCPL"
+        mc:Ignorable="d"
+        Title="MainWindow" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="500*"/>
+            <ColumnDefinition Width="200*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="NUEVO" Content="NUEVO"  HorizontalAlignment="Left" Height="26" Margin="40,32,0,0" VerticalAlignment="Top" Width="72" AutomationProperties.Name="NEW" FontWeight="Bold" Background="#FFBBB4B4"/>
+        <StackPanel Margin="0,272,287,110" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="194">
+            <Label FontWeight="Bold">ROL:</Label>
+            <RadioButton Name="rbDriver" GroupName="rolType" HorizontalAlignment="Right" IsChecked="True" Width="70">Chofer</RadioButton>
+            <RadioButton Name="rbCarrier" GroupName="rolType" HorizontalAlignment="Right" Width="70">Cargador</RadioButton>
+            <RadioButton Name="rbAux" GroupName="rolType" HorizontalAlignment="Right" Width="70">Auxiliar</RadioButton>
+        </StackPanel>
+        <!--<Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="328" Margin="40,0,0,0" VerticalAlignment="Center" Width="698">
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="124" Margin="57,180,0,0" VerticalAlignment="Top" Width="291">
+                <Label Content="ROL:"/>
+            </Border>
+
+        </Border>-->
+
+        <Label Content="Numero" HorizontalAlignment="Left" Height="26" Margin="102,150,0,0" VerticalAlignment="Top" Width="67" Grid.ColumnSpan="2"/>
+        <Label Content="Nombre" HorizontalAlignment="Left" Height="26" Margin="102,188,0,0" VerticalAlignment="Top" Width="67" Grid.ColumnSpan="2"/>
+        <TextBox Name="numeroEmpleado" Height="26" Margin="4,148,61,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="2" RenderTransformOrigin="0.491,0.48" Foreground="#FF1F1D1D" Background="#FFD6D0D0"/>
+        <TextBox Name="nombreEmpleado" Height="28" Margin="4,184,60,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="2" Background="#FFD6D0D0"/>
+        <Button Grid.Column="2" Content="Guardar" HorizontalAlignment="Left" Height="28" Margin="122,448,0,0" VerticalAlignment="Top" Width="116" Click="SaveButton_Click"/>
+        <Button Grid.Column="2" Content="Cancelar" HorizontalAlignment="Left" Height="28" Margin="263,448,0,0" VerticalAlignment="Top" Width="115" Click="CancelButton_Click" RenderTransformOrigin="0.47,-0.82"/>
+        <Label Content="Apellido" HorizontalAlignment="Left" Height="26" Margin="104,228,0,0" VerticalAlignment="Top" Width="67" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="apellidoEmpleado" Height="28" Margin="5,0,58,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Grid.Column="2" Background="#FFD6D0D0"/>
+    </Grid>
+</Window>

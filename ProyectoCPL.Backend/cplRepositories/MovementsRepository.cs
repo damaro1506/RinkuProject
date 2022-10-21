@@ -10,7 +10,7 @@ using System.Data;
 
 namespace ProyectoCPL.Backend.cplRepositories
 {
-    public class EmployeeRepository
+    public class MovementsRepository
     {
         #region "CreateEvents"
         public void CreateEmployee(Employee employee, ref SqlTransaction sqlTran)
@@ -58,6 +58,36 @@ namespace ProyectoCPL.Backend.cplRepositories
             };
         }
 
+        //public List<Employee> GetAreasByCoverConfigurationId(Int64 coverConfigurationId)
+        //{
+        //    var parameters = new List<SqlParameter>();
+        //    parameters.Add(new SqlParameter("CoverConfigurationId", coverConfigurationId));
+        //    var dt = DataAccess.Helper.ExecuteDataTable("GetAreasByCoverConfigurationId", parameters);
+        //    return (from i in dt.AsEnumerable()
+        //            select new Employee()
+        //            {
+        //                Id = i.Field<Int32>("Id"),
+        //                FirstName = i.Field<String>("Name"),
+        //                Active = i.Field<Boolean>("Active"),
+        //                //CoverConfigurationId = i.Field<Int64>("CoverConfigurationId"),
+        //            }).ToList();
+        //}
+
+        //public List<Employee> GetEmployees()
+        //{
+        //    var dt = DataAccess.Helper.ExecuteDataTable("RinkuEmployees_GetAll", null);
+
+        //    return (from i in dt.AsEnumerable()
+        //            select new Employee()
+        //            {
+        //                Id = i.Field<Int32>("Id"),
+        //                EmployeeNumber = i.Field<Int64>("employeeNumber"),
+        //FirstName = i.Field<String>("firstName"),
+        //                SecondName = i.Field<String>("secondName"),
+        //                RolesInformation = i.Field<Int32>("idRole"),
+        //                Active = i.Field<Boolean>("Active"),
+        //            }).ToList();
+        //}
 
         public List<Employee> GetEmployees()
         {

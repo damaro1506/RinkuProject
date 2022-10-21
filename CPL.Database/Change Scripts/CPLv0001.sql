@@ -65,6 +65,7 @@ CREATE TABLE RinkuEmployees (
 	registrationDate datetime not null,
 	leaveDate datetime null,
     roleId int NOT NULL,
+	IsActive bit NOT NULL
  
 )
 
@@ -77,10 +78,9 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rinku
 GO
 
 CREATE proc RinkuEmployees_GetAll
-@id bigint
 as
 begin
-	select * from RinkuEmployees with(nolock) 
+	select * from RinkuEmployees with(nolock)
 end
 
 GO
@@ -94,11 +94,11 @@ create proc [dbo].[RinkuEmployees_Insert]
 @firstName varchar(250) ,
 @secondName varchar(250) ,
 @registrationDate datetime ,
-@roleId int 
+@roleId int
 as
 begin
-	insert into [RinkuEmployees] (employeeNumber, firstName, secondName, registrationDate,leaveDate, roleId)
-	values ( @employeeNumber, @firstName, @secondName, @registrationDate, NULL, @roleId)
+	insert into [RinkuEmployees] (employeeNumber, firstName, secondName, registrationDate,leaveDate, roleId,IsActive)
+	values ( @employeeNumber, @firstName, @secondName, @registrationDate, NULL, @roleId,1)
 	select @@IDENTITY
 end
 
@@ -319,15 +319,46 @@ end
 
 go
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[RinkuEmployees_GetAll]') AND type in (N'P', N'PC'))
+	DROP PROCEDURE [dbo].[RinkuEmployees_GetAll]
+GO
+  
+create proc [RinkuEmployees_GetAll]  
+  
+as  
+begin  
+ select re.*, ro.*  from RinkuEmployees re with(nolock)   
+ inner join RinkuRoles ro with(nolock) on re.roleId = ro.id  
+   
+   
+end  
+
+GO 
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[RinkuEmployees_GetById]') AND type in (N'P', N'PC'))
+	DROP PROCEDURE [dbo].[RinkuEmployees_GetById]
+GO
+
+CREATE proc [RinkuEmployees_GetById]
+@id bigint
+as
+begin
+	select re.*, ro.*  from RinkuEmployees re with(nolock)   
+    inner join RinkuRoles ro with(nolock) on re.roleId = ro.id  
+	where re.id = @id
+end
+
+GO
+
 ---------------------------------------------------------------------------------
 GO
 --	END
 COMMIT
-
-
 
 select * from RinkuTaxes
 select * from RinkuEmployees
 select * from RinkuPantryVouchers
 select * from RinkuRoles
 select * from RinkuMovementsControl
+
+
