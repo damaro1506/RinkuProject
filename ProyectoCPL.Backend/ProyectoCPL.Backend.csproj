@@ -17,24 +17,6 @@
     <Page Remove="cplServices\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="Entities\CashRegisterOperation.cs" />
-    <Compile Remove="Entities\Courtesy.cs" />
-    <Compile Remove="Entities\CoverConfiguration.cs" />
-    <Compile Remove="Entities\CoverConfigurationArea.cs" />
-    <Compile Remove="Entities\CoverConfigurationPrice.cs" />
-    <Compile Remove="Entities\CoverData.cs" />
-    <Compile Remove="Entities\CoverDetail.cs" />
-    <Compile Remove="Entities\CustomerType.cs" />
-    <Compile Remove="Entities\Logo.cs" />
-    <Compile Remove="Entities\Payment.cs" />
-    <Compile Remove="Entities\PaymentDetail.cs" />
-    <Compile Remove="Entities\PaymentMethod.cs" />
-    <Compile Remove="Entities\PaymentType.cs" />
-    <Compile Remove="Entities\Role.cs" />
-    <Compile Remove="Entities\Terminal.cs" />
-    <Compile Remove="Entities\User.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Include="cplRepositories\RoleRepository.cs" />
