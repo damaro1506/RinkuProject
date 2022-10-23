@@ -1,0 +1,112 @@
+﻿<Window x:Name="CPLMain" x:Class="ProyectoCPL.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:AnimatedContentControlSample;assembly=Projects.Commons"
+        Title="MainWindow"
+        Style="{StaticResource WindowMaximized}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="37"></RowDefinition>
+            <RowDefinition Height="54"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <!--<Controls:TopBarUC x:Name="TopBar" />-->
+
+        <Grid Grid.Column="0" Grid.Row="1" Background="{DynamicResource PrimaryColor}">
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="65"></ColumnDefinition>
+                <ColumnDefinition Width="65"></ColumnDefinition>
+                <ColumnDefinition Width="65"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label VerticalAlignment="Center" Grid.Column="0" Content="CONTROL DE EMPLEADOS" Style="{StaticResource TitleLabel}" Margin="9,5,518,0" Height="49" ></Label>
+
+            <!--<Button Style="{StaticResource Flat}" Name="btnExit" Grid.Column="1"  ToolTip="SALIR">
+                <Button.Resources>
+                    <Style TargetType="ToolTip" BasedOn="{StaticResource {x:Type ToolTip}}">
+                        <Setter Property="Background" Value="Black"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontSize" Value="20"/>
+                    </Style>
+                </Button.Resources>
+                --><!--<Agregar imagenes para botones de recursos>--><!--
+            </Button>-->
+
+            <!--<Button Style="{StaticResource Flat}" Name="btnBack" Grid.Column="2" Click="Back_Click" ToolTip="">
+                --><!--<Image Source="{DynamicResource Img_Main}" Height="30" VerticalAlignment="Center" Margin="18,10,17,14" />--><!--
+                <Button.Resources>
+                    <Style TargetType="ToolTip" BasedOn="{StaticResource {x:Type ToolTip}}">
+                        <Setter Property="Background" Value="Black"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontSize" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>-->
+
+            <!--<Button Style="{StaticResource Flat}" Name="btnLock" Grid.Column="3" Click="btnLock_Click" ToolTip="BLOQUEAR">
+                --><!--<Image Source="{DynamicResource Img_Lock}" Width="20" Height="25" VerticalAlignment="Center" Margin="0,10,0,10" />--><!--
+                <Button.Resources>
+                    <Style TargetType="ToolTip" BasedOn="{StaticResource {x:Type ToolTip}}">
+                        <Setter Property="Background" Value="Black"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontSize" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>-->
+        </Grid>
+
+        <Grid Name="ContentView" Grid.Column="0" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid HorizontalAlignment="Left" Width="200" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="25"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!--<Image Grid.Column="1" Source="/Projects.Commons;component/Images/shadow_vr.fw.png" HorizontalAlignment="Right" Stretch="Fill"/>-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="btnEmployees" Style="{StaticResource BlackButton}" Content="Empleados" HorizontalAlignment="Left" Margin="23,22,0,0" VerticalAlignment="Top" Width="156" Height="32" Click="btnEmployees_Click"/>
+                    <Button Name="btnMovements" Content="Movimientos" Style="{StaticResource BlackButton}" HorizontalAlignment="Left" Margin="23,89,0,0" VerticalAlignment="Top" Width="156" Height="32" Click="btnMovements_Click" />
+                    
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ScrollViewer Grid.Row="0" Width="Auto" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled">
+                        <local:AnimatedContentControl Content="{Binding Content}" x:Name="WindowContent" />
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

@@ -13,7 +13,7 @@ namespace ProyectoCPL.Backend.cplRepositories
     public class EmployeeRepository
     {
         #region "CreateEvents"
-        public void CreateEmployee(Employee employee, ref SqlTransaction sqlTran)
+        public void CreateEmployee(Employee employee)
         {
             var parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("employeeNumber", employee.EmployeeNumber));
@@ -22,8 +22,9 @@ namespace ProyectoCPL.Backend.cplRepositories
             parameters.Add(new SqlParameter("registrationDate", DateTime.Now.ToString()));
             parameters.Add(new SqlParameter("roleId", employee.RolesInformation.Id));
 
-            DataAccess.Helper.ExecuteNonQuery(sqlTran, "RinkuEmployees_Insert", parameters);
+            DataAccess.Helper.ExecuteNonQuery("RinkuEmployees_Insert", parameters);
         }
+        
 
         #endregion
 
@@ -39,7 +40,7 @@ namespace ProyectoCPL.Backend.cplRepositories
 
         #region "Get_events"
 
-        public Employee GetById(Int32 id)
+        public Employee GetByEmployeeId(Int64 id)
         {
             var parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("Id", id));
@@ -66,14 +67,14 @@ namespace ProyectoCPL.Backend.cplRepositories
             return (from i in dt.AsEnumerable()
                     select new Employee()
                     {
-                        Id = i.Field<Int32>("Id"),
+                        Id = i.Field<Int64>("Id"),
                         EmployeeNumber = i.Field<Int64>("employeeNumber"),
                         FirstName = i.Field<String>("firstName"),
                         SecondName = i.Field<String>("secondName"),
                         RegistrationDate = i.Field<DateTime>("registrationDate"),
                         LeaveDate = i.Field<DateTime?>("leaveDate"),
-                        RolesInformation = new RolesInformation() { Id = i.Field<Int32>("id"), Name = i.Field<String>("roleName"), DaysPerWeek = i.Field<Int32>("daysPerWeek"), HoursPerDay = i.Field<Int32>("hoursPerDay"), PayPerDelivery = i.Field<Decimal>("payPerDelivery"), PayPerHour = i.Field<Decimal>("payPerHour"), PayBonus = i.Field<Decimal>("payBonus"), Active = i.Field<Boolean>("IsActive") },
-                        Active = i.Field<Boolean>("Active"),
+                        RolesInformation = new RolesInformation() { Id = i.Field<Int32>("roleId"), Name = i.Field<String>("roleName"), DaysPerWeek = i.Field<Int32>("daysPerWeek"), HoursPerDay = i.Field<Int32>("hoursPerDay"), PayPerDelivery = i.Field<Decimal>("payPerDelivery"), PayPerHour = i.Field<Decimal>("payPerHour"), PayBonus = i.Field<Decimal>("payBonus"), Active = i.Field<Boolean>("roleIsActive") },
+                        Active = i.Field<Boolean>("IsActive"),
 
                     }).ToList();
         }

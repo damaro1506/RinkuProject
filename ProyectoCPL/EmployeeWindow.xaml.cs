@@ -54,14 +54,15 @@ namespace ProyectoCPL
             var employee = new Employee();
 
             //validacion de datos!
-            employee.EmployeeNumber = Convert.ToInt64(numeroEmpleado.Text.ToString().Trim());
+            employee.EmployeeNumber = Convert.ToInt32(numeroEmpleado.Text.ToString().Trim());
             employee.FirstName = nombreEmpleado.Text.ToString().Trim();
             employee.SecondName = apellidoEmpleado.Text.ToString().Trim();
             var employeeRoleId = 0;
 
             if (rbDriver.IsChecked.Value)
                 employeeRoleId = (int)Roles.Driver;
-            else {
+            else
+            {
                 if (rbCarrier.IsChecked.Value)
                     employeeRoleId = (int)Roles.Carrier;
                 else
@@ -73,7 +74,7 @@ namespace ProyectoCPL
             SqlConnection sqlConn = null;
             SqlTransaction sqlTran = null;
 
-            
+
 
             try
             {
@@ -108,6 +109,6 @@ namespace ProyectoCPL
         {
         }
 
-        
+
     }
 }

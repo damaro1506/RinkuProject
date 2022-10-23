@@ -7,10 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Close.fw.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Close.fw.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Update="Themes\ResourcesDictionary.xaml">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controls\" />
+    <Folder Include="Font\" />
   </ItemGroup>
 
 </Project>

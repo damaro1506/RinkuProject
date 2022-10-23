@@ -32,9 +32,9 @@ namespace ProyectoCPL.Backend.cplServices
 
         #region "Get_events"
 
-        public Employee GetById(Int32 id)
+        public Employee GetByEmployeeId(Int32 id)
         {
-            return repository.GetById(id);
+            return repository.GetByEmployeeId(id);
         }
 
         public List<Employee> GetActiveEmployees()
@@ -52,7 +52,7 @@ namespace ProyectoCPL.Backend.cplServices
             if (employees.Where(a=> a.FirstName.ToLower().Trim() == employee.FirstName.ToLower().Trim()).Any() && employees.Where(a => a.SecondName.ToLower().Trim() == employee.SecondName.ToLower().Trim()).Any())
                 throw new ProyectoCPL.Backend.ExceptionManagement.ProyectoCPLException("El nombre del empleado ya existe.");
 
-            repository.CreateEmployee(employee, ref sqlTran);
+            repository.CreateEmployee(employee);
         }
 
     }

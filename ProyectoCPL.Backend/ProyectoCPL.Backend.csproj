@@ -37,8 +37,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="cplRepositories\RoleRepository.cs" />
     <Compile Include="cplRepositories\MovementsRepository.cs" />
     <Compile Include="cplRepositories\EmployeeRepository.cs" />
+    <Compile Include="cplServices\RoleService.cs" />
     <Compile Include="cplServices\MovementsService.cs" />
     <Compile Include="cplServices\EmployeeService.cs" />
   </ItemGroup>

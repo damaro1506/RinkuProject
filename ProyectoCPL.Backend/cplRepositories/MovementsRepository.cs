@@ -97,7 +97,7 @@ namespace ProyectoCPL.Backend.cplRepositories
                     select new Employee()
                     {
                         Id = i.Field<Int32>("Id"),
-                        EmployeeNumber = i.Field<Int64>("employeeNumber"),
+                        EmployeeNumber = i.Field<Int32>("employeeNumber"),
                         FirstName = i.Field<String>("firstName"),
                         SecondName = i.Field<String>("secondName"),
                         RegistrationDate = i.Field<DateTime>("registrationDate"),

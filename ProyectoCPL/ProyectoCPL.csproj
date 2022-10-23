@@ -8,6 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UserControls\EmployeesUCtest.xaml.cs" />
+    <Compile Remove="UserControls\EmployeeUC.xaml.cs" />
+    <Compile Remove="UserControls\User_Window.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="UserControls\EmployeesUCtest.xaml" />
+    <Page Remove="UserControls\EmployeeUC.xaml" />
+    <Page Remove="UserControls\User_Window.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.4" />
   </ItemGroup>
 
