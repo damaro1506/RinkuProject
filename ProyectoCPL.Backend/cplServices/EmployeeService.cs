@@ -69,13 +69,14 @@ namespace ProyectoCPL.Backend.cplServices
 
         public Employee GetActiveEmployeeByName(String compoundName)
         {
-            var employees = repository.GetEmployees().Where(a => compoundName.Contains(a.FirstName) && compoundName.Contains(a.SecondName)).ToList();
+            var employees = repository.GetEmployees().Where(a => compoundName.ToLower().Trim().Contains(a.FirstName.ToLower().Trim()) && compoundName.ToLower().Trim().Contains(a.SecondName.ToLower().Trim())).ToList();
+            //var employees = repository.GetEmployees().Where(a => a.FirstName.ToLower().Trim() && compoundName.Contains(a.SecondName)).ToList();
             if (employees.Count > 1)
                 throw new Exception("Existe mas de un empleado con este nombre, verificarlo con soporte.");
             if (employees.Count == 0)
                 throw new Exception("Favor de capturar el nombre completo");
-            
-                return employees.First();
+
+            return employees.First();
         }
 
 
