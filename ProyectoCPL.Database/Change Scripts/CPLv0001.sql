@@ -200,11 +200,8 @@ begin
 CREATE TABLE RinkuMovementsControl (
 	id bigint identity NOT NULL,
 	employeeId bigint NOT NULL,
-	employeeNumber bigint NOT NULL,
-    firstName varchar(250) NOT NULL,
-	secondName varchar(250) NOT NULL,
+	quantityOfDeliveries int NOT NULL,
 	registrationDate datetime not null,
-    roleId int NOT NULL,
 	monthNumber int NOT NULL,
 	monthlyWorkedHours int NOT NULL,
 	subTotal money NOT NULL, 
@@ -223,10 +220,12 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Rinku
 GO
 
 CREATE proc RinkuMovementsControl_GetAll
-@id bigint
 as
 begin
-	select * from RinkuMovementsControl with(nolock) 
+	select rm.id,rm.employeeId,re.employeeNumber,re.firstName, re.secondName, re.roleId, re.IsActive,rm.RegistrationDate,rm.quantityOfDeliveries, rm.monthNumber,
+	rm.monthlyWorkedHours, rm.monthlyPayPerDeliveries, rm.monthlyPayPerBonus, rm.subTotal, rm.monthlyRetention, 
+	rm.monthlyVouchers, rm.totalPayed from RinkuMovementsControl rm with(nolock)   
+    inner join RinkuEmployees re with(nolock) on rm.employeeId = re.id 
 end
 
 GO
@@ -239,8 +238,11 @@ CREATE proc RinkuMovementsControl_GetById
 @id bigint
 as
 begin
-	select * from RinkuMovementsControl with(nolock) 
-	where id = @id
+	select rm.id,rm.employeeId,re.employeeNumber,re.firstName, re.secondName, re.roleId, re.IsActive,rm.quantityOfDeliveries, rm.monthNumber,
+	rm.RegistrationDate,rm.monthlyWorkedHours, rm.monthlyPayPerDeliveries, rm.monthlyPayPerBonus, rm.subTotal, rm.monthlyRetention, 
+	rm.monthlyVouchers, rm.totalPayed from RinkuMovementsControl rm with(nolock)   
+    inner join RinkuEmployees re with(nolock) on rm.employeeId = re.id 
+	where rm.id = @id
 
 end
 
@@ -252,11 +254,8 @@ GO
 
 create proc [dbo].[RinkuMovementsControl_Insert]
 @employeeId bigint ,
-@employeeNumber bigint ,
-@firstName varchar(250) ,
-@secondName varchar(250) ,
+@quantityOfDeliveries int,
 @registrationDate datetime ,
-@roleId int ,
 @monthNumber int ,
 @monthlyWorkedHours int,
 @subTotal money , 
@@ -267,9 +266,9 @@ create proc [dbo].[RinkuMovementsControl_Insert]
 @totalPayed  money  
 as
 begin
-	insert into [RinkuMovementsControl] (employeeId, employeeNumber, firstName, secondName, registrationDate, roleId, monthNumber, 
+	insert into [RinkuMovementsControl] (employeeId,quantityOfDeliveries, registrationDate,  monthNumber, 
 	monthlyWorkedHours, subTotal, monthlyPayPerDeliveries, monthlyPayPerBonus, monthlyRetention,monthlyVouchers,totalPayed)
-	values (@employeeId, @employeeNumber, @firstName, @secondName, @registrationDate, @roleId, @monthNumber, 
+	values (@employeeId, @quantityOfDeliveries,@registrationDate, @monthNumber, 
 	@monthlyWorkedHours, @subTotal, @monthlyPayPerDeliveries, @monthlyPayPerBonus, @monthlyRetention,@monthlyVouchers,@totalPayed)
 	select @@IDENTITY
 end
@@ -283,11 +282,8 @@ GO
 create proc [dbo].[RinkuMovementsControl_Update]
 @id bigint,
 @employeeId bigint ,
-@employeeNumber bigint ,
-@firstName varchar(250) ,
-@secondName varchar(250) ,
+@quantityOfDeliveries int,
 @registrationDate datetime ,
-@roleId int ,
 @monthNumber int ,
 @monthlyWorkedHours int ,
 @subTotal money , 
@@ -301,19 +297,16 @@ begin
 	update [RinkuMovementsControl]
 	set 
 	employeeId = @employeeId, 
-	@employeeNumber = @employeeNumber, 
-	@firstName = @firstName, 
-	@secondName = @secondName, 
-	@registrationDate = @registrationDate, 
-	@roleId = @roleId, 
-	@monthNumber = @monthNumber, 
-	@monthlyWorkedHours = @monthlyWorkedHours, 
-	@subTotal = @subTotal, 
-	@monthlyPayPerDeliveries = @monthlyPayPerDeliveries, 
-	@monthlyPayPerBonus = @monthlyPayPerBonus,
-	@monthlyRetention = @monthlyRetention,
-	@monthlyVouchers = @monthlyVouchers,
-	@totalPayed = @totalPayed
+	quantityOfDeliveries = @quantityOfDeliveries,
+	registrationDate = @registrationDate, 
+	monthNumber = @monthNumber, 
+	monthlyWorkedHours = @monthlyWorkedHours, 
+	subTotal = @subTotal, 
+	monthlyPayPerDeliveries = @monthlyPayPerDeliveries, 
+	monthlyPayPerBonus = @monthlyPayPerBonus,
+	monthlyRetention = @monthlyRetention,
+	monthlyVouchers = @monthlyVouchers,
+	totalPayed = @totalPayed
 	Where id = @id
 end
 
@@ -327,7 +320,7 @@ create proc [RinkuEmployees_GetAll]
   
 as  
 begin  
- select re.*, ro.*  from RinkuEmployees re with(nolock)   
+ select re.*,ro.roleName roleName,ro.payPerHour,ro.payPerDelivery, ro.payBonus,ro.hoursPerDay,ro.daysPerWeek,ro.isActive roleIsActive  from RinkuEmployees re with(nolock)   
  inner join RinkuRoles ro with(nolock) on re.roleId = ro.id  
    
    
@@ -343,9 +336,75 @@ CREATE proc [RinkuEmployees_GetById]
 @id bigint
 as
 begin
-	select re.*, ro.*  from RinkuEmployees re with(nolock)   
-    inner join RinkuRoles ro with(nolock) on re.roleId = ro.id  
+ select re.*,ro.roleName roleName,ro.payPerHour,ro.payPerDelivery, ro.payBonus,ro.hoursPerDay,ro.daysPerWeek,ro.isActive roleIsActive  from RinkuEmployees re with(nolock)   
+ inner join RinkuRoles ro with(nolock) on re.roleId = ro.id  
 	where re.id = @id
+end
+
+GO
+
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[RinkuRoles_GetAll]') AND type in (N'P', N'PC'))
+	DROP PROCEDURE [dbo].[RinkuRoles_GetAll]
+GO
+
+CREATE proc RinkuRoles_GetAll
+as
+begin
+	select * from RinkuRoles with(nolock) 
+end
+
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[RinkuTaxes_GetISRData]') AND type in (N'P', N'PC'))
+	DROP PROCEDURE [dbo].[RinkuTaxes_GetISRData]
+GO
+
+CREATE proc RinkuTaxes_GetISRData
+as
+begin
+	select * from RinkuTaxes with(nolock) 
+end
+
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[RinkuTaxes_GetISRDataByName]') AND type in (N'P', N'PC'))
+	DROP PROCEDURE [dbo].[RinkuTaxes_GetISRDataByName]
+GO
+
+CREATE proc RinkuTaxes_GetISRDataByName
+@taxName varchar(250)
+as
+begin
+	select * from RinkuTaxes with(nolock)
+	where taxName = @taxName
+end
+
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[RinkuPantryVouchers_GetAll]') AND type in (N'P', N'PC'))
+	DROP PROCEDURE [dbo].[RinkuPantryVouchers_GetAll]
+GO
+
+CREATE proc RinkuPantryVouchers_GetAll
+as
+begin
+	select * from RinkuPantryVouchers with(nolock) 
+end
+
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[RinkuTaxes_GetVoucherByName]') AND type in (N'P', N'PC'))
+	DROP PROCEDURE [dbo].[RinkuTaxes_GetVoucherByName]
+GO
+
+CREATE proc RinkuTaxes_GetVoucherByName
+@voucherName varchar(250)
+as
+begin
+	select * from RinkuPantryVouchers with(nolock)
+	where voucherName = @voucherName
 end
 
 GO
@@ -360,5 +419,7 @@ select * from RinkuEmployees
 select * from RinkuPantryVouchers
 select * from RinkuRoles
 select * from RinkuMovementsControl
+
+
 
 

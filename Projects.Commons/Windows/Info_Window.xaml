@@ -41,7 +41,6 @@
                 </Label>
             </Grid>
         </Border>
-        <!--<Image Grid.Row="2" Source="/WBM.Common;component/Images/shadow_hu2.fw.png" VerticalAlignment="Top" Margin="5,0" Stretch="Fill" />-->
 
         <Button Name="btnCancel" Style="{StaticResource BlackButton}" Grid.Row="3" Content="Cancelar" Margin="242,15,144,5" Click="btnCancel_Click" />
         <Button Name="btnOk" Style="{StaticResource BlackButton}" Grid.Row="3" Content="Aceptar" Margin="374,15,13,5" Click="btnOk_Click"/>

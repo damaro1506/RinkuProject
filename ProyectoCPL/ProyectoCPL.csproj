@@ -7,6 +7,14 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="UserControls\Movement_Window.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="UserControls\Movement_Window.xaml" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.4" />
@@ -15,6 +23,26 @@
   <ItemGroup>
     <ProjectReference Include="..\Projects.Commons\Projects.Commons.csproj" />
     <ProjectReference Include="..\ProyectoCPL.Backend\ProyectoCPL.Backend.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="UserControls\Movements_Window.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\MovementsUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UserControls\Movements_Window.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\MovementsUC.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

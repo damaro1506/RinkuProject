@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 
 namespace ProyectoCPL.UserControls
 {
-    
+
     public partial class Employees_Window : Window
     {
         #region "Properties"
@@ -123,12 +123,16 @@ namespace ProyectoCPL.UserControls
                 {
                     var employeeFirstName = this.txtFirstName.Text;
                     var employeeSecondName = this.txtSecondName.Text;
-                    var employeeNumber = Convert.ToInt32(this.txtEmployeeNumber.Text);
-                    var roleid = this.cmbRol.SelectedItem;
+                    var employeeNumber = this.txtEmployeeNumber.Text;
+                    //var roleid = this.cmbRol.SelectedItem;
                     var employee = new Employee();
                     employee.FirstName = employeeFirstName;
                     employee.SecondName = employeeSecondName;
-                    employee.EmployeeNumber = employeeNumber;
+                    if (String.IsNullOrEmpty(employeeNumber))
+                        employee.EmployeeNumber = 0;
+                    else
+                        employee.EmployeeNumber = Convert.ToInt32(employeeNumber);
+
                     employee.RolesInformation = new RolesInformation() { Id = cmbRol.SelectedIndex + 1 };
                     employeeService.CreateEmployee(employee);
                 }
@@ -156,5 +160,20 @@ namespace ProyectoCPL.UserControls
             }
         }
 
+        private void txtEmployeeNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.Tab)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+                ProjectsHelper.BeginFadeOut(parent);
+                var messageUC = new Info_Window(String.Format("Solo valores numéricos"), MessageType.message);
+                messageUC.ShowDialog();
+                ProjectsHelper.BeginFadeIn(parent);
+            }
+        }
     }
 }

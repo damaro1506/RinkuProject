@@ -19,9 +19,13 @@
 
 
   <ItemGroup>
+    <Compile Include="cplRepositories\VoucherRepository.cs" />
+    <Compile Include="cplRepositories\TaxesDataRepository.cs" />
     <Compile Include="cplRepositories\RoleRepository.cs" />
     <Compile Include="cplRepositories\MovementsRepository.cs" />
     <Compile Include="cplRepositories\EmployeeRepository.cs" />
+    <Compile Include="cplServices\VoucherService.cs" />
+    <Compile Include="cplServices\TaxesDataService.cs" />
     <Compile Include="cplServices\RoleService.cs" />
     <Compile Include="cplServices\MovementsService.cs" />
     <Compile Include="cplServices\EmployeeService.cs" />

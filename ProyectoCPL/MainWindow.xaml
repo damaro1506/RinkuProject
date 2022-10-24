@@ -14,7 +14,6 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <!--<Controls:TopBarUC x:Name="TopBar" />-->
 
         <Grid Grid.Column="0" Grid.Row="1" Background="{DynamicResource PrimaryColor}">
             <Grid.RowDefinitions>
@@ -30,7 +29,7 @@
 
             <Label VerticalAlignment="Center" Grid.Column="0" Content="CONTROL DE EMPLEADOS" Style="{StaticResource TitleLabel}" Margin="9,5,518,0" Height="49" ></Label>
 
-            <!--<Button Style="{StaticResource Flat}" Name="btnExit" Grid.Column="1"  ToolTip="SALIR">
+            <Button Content="Salir" Style="{StaticResource BlackButton}" Name="btnExit" Grid.Column="3"  ToolTip="SALIR" Click="btnExit_Click">
                 <Button.Resources>
                     <Style TargetType="ToolTip" BasedOn="{StaticResource {x:Type ToolTip}}">
                         <Setter Property="Background" Value="Black"/>
@@ -38,30 +37,9 @@
                         <Setter Property="FontSize" Value="20"/>
                     </Style>
                 </Button.Resources>
-                --><!--<Agregar imagenes para botones de recursos>--><!--
-            </Button>-->
+            </Button>
 
-            <!--<Button Style="{StaticResource Flat}" Name="btnBack" Grid.Column="2" Click="Back_Click" ToolTip="">
-                --><!--<Image Source="{DynamicResource Img_Main}" Height="30" VerticalAlignment="Center" Margin="18,10,17,14" />--><!--
-                <Button.Resources>
-                    <Style TargetType="ToolTip" BasedOn="{StaticResource {x:Type ToolTip}}">
-                        <Setter Property="Background" Value="Black"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="FontSize" Value="20"/>
-                    </Style>
-                </Button.Resources>
-            </Button>-->
-
-            <!--<Button Style="{StaticResource Flat}" Name="btnLock" Grid.Column="3" Click="btnLock_Click" ToolTip="BLOQUEAR">
-                --><!--<Image Source="{DynamicResource Img_Lock}" Width="20" Height="25" VerticalAlignment="Center" Margin="0,10,0,10" />--><!--
-                <Button.Resources>
-                    <Style TargetType="ToolTip" BasedOn="{StaticResource {x:Type ToolTip}}">
-                        <Setter Property="Background" Value="Black"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="FontSize" Value="20"/>
-                    </Style>
-                </Button.Resources>
-            </Button>-->
+            
         </Grid>
 
         <Grid Name="ContentView" Grid.Column="0" Grid.Row="2">
@@ -81,7 +59,6 @@
                     <ColumnDefinition Width="25"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <!--<Image Grid.Column="1" Source="/Projects.Commons;component/Images/shadow_vr.fw.png" HorizontalAlignment="Right" Stretch="Fill"/>-->
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>

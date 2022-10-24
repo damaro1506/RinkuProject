@@ -24,6 +24,13 @@
                 <DropShadowEffect ShadowDepth="10" Direction="275" BlurRadius="30" Color="#FFC5C5C5"/>
             </DataGrid.Effect>
             <DataGrid.Columns>
+                <DataGridTemplateColumn Width="*" IsReadOnly="True" Header="No Empleado" CanUserResize="False" CanUserReorder="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate x:Name="tmpEmployeeNumber">
+                            <Label x:Name="lbEmployeeNumber" Content="{Binding EmployeeNumber}" HorizontalAlignment="Center" ></Label>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTemplateColumn Width="*" IsReadOnly="True" Header="Nombre" CanUserResize="False" CanUserReorder="False">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate x:Name="tmpName">
@@ -41,27 +48,14 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <!--<Button x:Name="btnEdit" Width="30"
-                                    Height="30" Click="btnEdit_Click">
-                                <Button.Template>
-                                    <ControlTemplate TargetType="Button">
-                                        <Grid>
-                                            <Ellipse Stroke="{x:Null}"
-                                             StrokeThickness="2" Fill="{DynamicResource PrimaryColor}"/>
-                                            <Image Source="{DynamicResource Img_Edit}" Width="100" VerticalAlignment="Center"/>
-                                            <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"/>
-                                        </Grid>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>-->
+                            
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <!--<Button x:Name="btnDelete" Width="30"
+                            <!--<Button x:Name="btnDelete" Width="30" Idea de agregar botones para borrar o actualizar un empleado
                                     Height="30" Click="btnDelete_Click">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">

@@ -542,5 +542,4 @@
         <Border x:Name="PART_ContentHost" Focusable="True" CornerRadius="2"/>
     </ControlTemplate>
 
-    <ImageSource x:Key="Img_Close">/Projects.Commons;component/Images/Close.fw.png</ImageSource>
 </ResourceDictionary>

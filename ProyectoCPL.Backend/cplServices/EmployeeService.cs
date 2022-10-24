@@ -34,14 +34,15 @@ namespace ProyectoCPL.Backend.cplServices
 
         public void CreateEmployee(Employee employee)
         {
-            if (employee.RolesInformation.Id < 1)
-                throw new Exception("Favor de seleccionar un rol");
+            if (employee.EmployeeNumber == 0)
+                throw new Exception("El numero de empleado es requerido");
             if (String.IsNullOrEmpty(employee.FirstName))
                 throw new Exception("El nombre del empleado es requerido");
             if (String.IsNullOrEmpty(employee.SecondName))
                 throw new Exception("El apellido del empleado es requerido");
-            if (String.IsNullOrEmpty(employee.EmployeeNumber.ToString()))
-                throw new Exception("El numero de empleado es requerido");
+            if (employee.RolesInformation.Id < 1)
+                throw new Exception("Favor de seleccionar un rol");
+            
 
             var employees = GetActiveEmployees();
             if (employees.Where(a => a.EmployeeNumber == employee.EmployeeNumber).Any())
@@ -66,6 +67,17 @@ namespace ProyectoCPL.Backend.cplServices
             return repository.GetEmployees().Where(a => a.Active).ToList();
         }
 
+        public Employee GetActiveEmployeeByName(String compoundName)
+        {
+            var employees = repository.GetEmployees().Where(a => compoundName.Contains(a.FirstName) && compoundName.Contains(a.SecondName)).ToList();
+            if (employees.Count > 1)
+                throw new Exception("Existe mas de un empleado con este nombre, verificarlo con soporte.");
+            if (employees.Count == 0)
+                throw new Exception("Favor de capturar el nombre completo");
+            
+                return employees.First();
+        }
+
 
         #endregion
 
@@ -73,8 +85,8 @@ namespace ProyectoCPL.Backend.cplServices
         {
             var employees = GetActiveEmployees();
 
-            if (employees.Where(a=> a.FirstName.ToLower().Trim() == employee.FirstName.ToLower().Trim()).Any() && employees.Where(a => a.SecondName.ToLower().Trim() == employee.SecondName.ToLower().Trim()).Any())
-                throw new ProyectoCPL.Backend.ExceptionManagement.ProyectoCPLException("El nombre del empleado ya existe.");
+            if (employees.Where(a => a.FirstName.ToLower().Trim() == employee.FirstName.ToLower().Trim()).Any() && employees.Where(a => a.SecondName.ToLower().Trim() == employee.SecondName.ToLower().Trim()).Any())
+                throw new Exception("El nombre del empleado ya existe.");
 
             repository.CreateEmployee(employee);
         }

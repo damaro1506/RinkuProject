@@ -8,20 +8,17 @@ namespace ProyectoCPL.Backend.Entities
 {
     public class Movement
     {
-        public Int32 Id { get; set; }
-        public String EmployeeId { get; set; }
-        public Decimal EmployeeNumber { get; set; }
-        public Decimal FirstName { get; set; }
-        public Decimal SecondName { get; set; }
-        public Int32 RegistrationDate { get; set; }
-        public Int32 RoleId { get; set; }
-        public Boolean MonthNumber { get; set; }
+        public Int64 Id { get; set; }
+        public Employee Employee { get; set; }
+        public DateTime RegistrationDate { get; set; }
+        public Int32 MonthNumber { get; set; }
+        public Int32 QuantityOfDeliveries { get; set; }
         public Int32 WorkedHoursPerMonth { get; set; }
-        public String SubTotal { get; set; }
+        public Decimal SubTotal { get; set; }
         public Decimal MonthlyPayPerDelivery { get; set; }
         public Decimal MonthlyPayPerBonus { get; set; }
         public Decimal MonthlyRetention { get; set; }
-        public Int32 MonthlyVouchers { get; set; }
-        public Int32 TotalPayed { get; set; }
+        public Decimal MonthlyVouchers { get; set; }
+        public Decimal TotalPayed { get; set; }
     }
 }
