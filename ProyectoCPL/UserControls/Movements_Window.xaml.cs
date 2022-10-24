@@ -186,16 +186,18 @@ namespace ProyectoCPL.UserControls
                     var monthNumber = this.cmbMonth.SelectedIndex + 1;
                     if (String.IsNullOrEmpty(this.txtQuantityOfDeliveries.Text))
                         throw new ProyectoCPLException("Favor de capturar la cantidad de entregas");
+                    if(String.IsNullOrEmpty(this.txtNonWorkedHours.Text))
+                        throw new ProyectoCPLException("Favor de capturar las horas no trabajadas");
 
                     var quantityOfDeliveries = Convert.ToInt32(this.txtQuantityOfDeliveries.Text);
-                    //var hoursDiscounted = Convert.ToInt32(this.txtHoursDiscounted.Text);  Se puede agregar un descuento de horas.
+                    var hoursDiscounted = Convert.ToInt32(this.txtNonWorkedHours.Text);  
                     var movement = new Movement();
                     movement.QuantityOfDeliveries = quantityOfDeliveries;
                     movement.MonthNumber = monthNumber;
                     var payPerHour = gEmployee.RolesInformation.PayPerHour;
                     var weeksInMonth = 4;
-                    var workedHoursPerMonth = (gEmployee.RolesInformation.HoursPerDay * gEmployee.RolesInformation.DaysPerWeek) * weeksInMonth; // Aqui se resolveria el tema del descuento de horas
-                    movement.WorkedHoursPerMonth = workedHoursPerMonth;
+                    var workedHoursPerMonth = (gEmployee.RolesInformation.HoursPerDay * gEmployee.RolesInformation.DaysPerWeek) * weeksInMonth; 
+                    movement.WorkedHoursPerMonth = workedHoursPerMonth - hoursDiscounted;
                     var monthlyPayPerDelivery = gEmployee.RolesInformation.PayPerDelivery * quantityOfDeliveries;
                     movement.MonthlyPayPerDelivery = monthlyPayPerDelivery;
                     decimal monthlyPayPerBonus = 0;
@@ -301,6 +303,16 @@ namespace ProyectoCPL.UserControls
         }
 
         private void txtQuantityOfDeliveries_KeyDown(object sender, KeyEventArgs e)
+        {
+            onlyKeyNumbers(sender, e);
+        }
+
+        private void txtNonWorkedHours_KeyDown(System.Object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            onlyKeyNumbers(sender,e);
+        }
+
+        private void onlyKeyNumbers(object sender, KeyEventArgs e)
         {
             if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.Tab)
             {
